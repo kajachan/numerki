@@ -1,1 +1,1 @@
-# numerki
+# numerki - zadanie 1
