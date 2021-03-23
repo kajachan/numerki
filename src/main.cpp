@@ -17,7 +17,6 @@ int main() {
     int wyborFunkcji, wyborWariantu;
     bool flag = 0, flag1 = 0;
 
-    cout << setprecision(5) << fixed;
 
     //sprawdzenie czy podany wyborFunkcji to 1, 2 lub 3
     cout << setprecision(5) << fixed;
