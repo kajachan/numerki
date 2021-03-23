@@ -67,7 +67,7 @@ int main() {
     }
 
     int iter;
-    double eps;
+    double e;
     bool flagType = 0;
 
     if (wyborFunkcji == 1) {
@@ -77,10 +77,10 @@ int main() {
         }
         if (wyborWariantu == 1) {
             cout << "Podaj epsilon: " << endl;
-            cin >> eps;
+            cin >> e;
             flagType = 1;
-            wynikb = bisekcja(a, b, eps, trygonometryczna, flagType);
-            wyniks = sieczne(a, b, eps, trygonometryczna, flagType);
+            wynikb = bisekcja(a, b, e, trygonometryczna, flagType);
+            wyniks = sieczne(a, b, e, trygonometryczna, flagType);
         } else {
             cout << "Podaj ilosc iteracji: " << endl;
             cin >> iter;
@@ -97,10 +97,10 @@ int main() {
         }
         if (wyborWariantu == 1) {
             cout << "Podaj epsilon: " << endl;
-            cin >> eps;
+            cin >> e;
             flagType = 1;
-            wynikb = bisekcja(a, b, eps, wykladnicza, flagType);
-            wyniks = sieczne(a, b, eps, wykladnicza, flagType);
+            wynikb = bisekcja(a, b, e, wykladnicza, flagType);
+            wyniks = sieczne(a, b, e, wykladnicza, flagType);
         } else {
             cout << "Podaj ilosc iteracji: " << endl;
             cin >> iter;
@@ -117,10 +117,10 @@ int main() {
         }
         if (wyborWariantu == 1) {
             cout << "Podaj epsilon: " << endl;
-            cin >> eps;
+            cin >> e;
             flagType = 1;
-            wynikb = bisekcja(a, b, eps, wykladnicza, flagType);
-            wyniks = sieczne(a, b, eps, wykladnicza, flagType);
+            wynikb = bisekcja(a, b, e, wykladnicza, flagType);
+            wyniks = sieczne(a, b, e, wykladnicza, flagType);
         } else {
             cout << "Podaj ilosc iteracji: " << endl;
             cin >> iter;
