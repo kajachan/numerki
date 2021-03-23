@@ -9,38 +9,14 @@ using namespace std;
 
 vector <double> wsp;
 
-// tworzenie wykresu
-void tworzenieWykresu(double a, double b, double fun(double), double wynikb, double wyniks) {
-    vector <double> x(300);
-    vector <double> y(300);
-    Gnuplot wykres;
+void tworzenieWykresu(double a, double b, double fun(double), double wynikb, double wyniks);
 
-    wykres.set_title("Wykres funkcji" );
-    wykres.set_grid();
-    wykres.set_xlabel("OX");
-    wykres.set_ylabel("OY");
-    wykres.set_xrange(a, b);
-    wykres.set_style("points");
-    wykres.set_pointsize(1.0);
-
-    while (a <= b) {
-        x.push_back(a);
-        y.push_back(fun(a));
-        a += 0.01;
-    }
-
-    wykres.plot_xy(x, y, "Wykres" );
-    getchar();
-    getchar();
-}
-
-// main
 int main() {
     Gnuplot::set_GNUPlotPath(GNUPLOT_PATH);
-    double a, b;
-    double wynikb, wyniks;
+    double a, b, wynikb, wyniks;
     int wyborFunkcji, wyborWariantu;
     bool flag = 0, flag1 = 0;
+
     cout << setprecision(10) << fixed;
 
     //sprawdzenie czy podany wyborFunkcji to 1, 2 lub 3
@@ -148,3 +124,26 @@ int main() {
     return 0;
 }
 
+void tworzenieWykresu(double a, double b, double fun(double), double wynikb, double wyniks) {
+    vector <double> x(300);
+    vector <double> y(300);
+    Gnuplot wykres;
+
+    wykres.set_title("Wykres funkcji" );
+    wykres.set_grid();
+    wykres.set_xlabel("OX");
+    wykres.set_ylabel("OY");
+    wykres.set_xrange(a, b);
+    wykres.set_style("points");
+    wykres.set_pointsize(1.0);
+
+    while (a <= b) {
+        x.push_back(a);
+        y.push_back(fun(a));
+        a += 0.01;
+    }
+
+    wykres.plot_xy(x, y, "Wykres" );
+    getchar();
+    getchar();
+}
