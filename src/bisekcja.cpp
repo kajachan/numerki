@@ -1,33 +1,26 @@
 #include <iostream>
 #include <cmath>
 
-
 using namespace std;
 
+double bisekcja(double a, double b, double stop, double (*fun)(double), bool flagType) {
+    int liczbaIteracji = 0, i = 0;
+    double e = -2.0, c;
 
-void bisekcja(double (*f)(double), double a, double b,int wariant)
-{
-    unsigned int i=0, iteracje=UINT_MAX;
-    double x, eps=-1.0;
-    if (wariant==1)
-    {
-        cout << "podaj epsilon"<<endl;
-        cin >> eps;
+    if (flagType) {
+        e = stop;
+    } else {
+        liczbaIteracji = stop;
     }
-    else
-    {
-        cout << "podaj liczbe iteracji"<<endl;
-        cin >> iteracje;
-    }
+
     do {
-        x = (a+b)/2;
-        if (f(a)*f(x)<0) b=x;
-        else a=x;
+        c = (a + b) / 2;
+        if (fun(a) * fun(c) < 0) b = c;
+        else a = c;
         i++;
-    } while((abs(f(x)) >= eps) && (i != iteracje)&& (a!=b));
+    } while((i != liczbaIteracji) && (abs(fun(c)) >= e));
 
-    cout<< "Wykonanych iteracji: "<< i <<endl;
+    cout << "Ilosc iteracji (bisekcja) to: " << i << endl;
 
-    cout <<"Znalezione miejsce zerowe: " << x <<endl;
-
+    return c;
 }

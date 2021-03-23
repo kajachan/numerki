@@ -949,7 +949,7 @@ Gnuplot::~Gnuplot()
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__)
     if (_pclose(gnucmd) == -1)
 #elif defined(unix) || defined(__unix) || defined(__unix__) || defined(__APPLE__)
-    if (pclose(gnucmd) == -1)
+        if (pclose(gnucmd) == -1)
 #endif
         throw GnuplotException("Problem closing communication to gnuplot");
 }
