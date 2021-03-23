@@ -15,8 +15,11 @@ double bisekcja(double a, double b, double stop, double (*fun)(double), bool fla
 
     do {
         c = (a + b) / 2;
-        if (fun(a) * fun(c) < 0) b = c;
-        else a = c;
+        if (fun(a) * fun(c) < 0) {
+            b = c;
+        } else {
+            a = c;
+        }
         i++;
     } while((i != liczbaIteracji) && (abs(fun(c)) >= e));
 

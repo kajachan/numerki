@@ -17,12 +17,18 @@ int main() {
     int wyborFunkcji, wyborWariantu;
     bool flag = 0, flag1 = 0;
 
-    cout << setprecision(10) << fixed;
+    cout << setprecision(5) << fixed;
 
     //sprawdzenie czy podany wyborFunkcji to 1, 2 lub 3
-    cout << "Podaj funkcje do zbadania.\n1. - sin(2*x)+x+1.5\n2. - 2*exp(-x)-4*x*x\n3. - exp(sin(x))-1\n" << endl;
+    cout << setprecision(5) << fixed;
+    cout << "Podaj funkcje do zbadania." << endl;
+    cout << "1. - 27.3*x - 17.75*x^2 - 8.35*x^3 + 3.2*x^4 + x^5" << endl;
+    cout << "2. - 2*sin(2 * x) + 0.3" << endl;
+    cout << "3. - 3 * exp(-x*x) - 0.8" << endl;
+    cout << "4. - exp(sin(x)) - 1" << endl;
+    cout << "5. - exp(x) + cos(x)" << endl;
     cin >> wyborFunkcji;
-    if (!(wyborFunkcji == 1 || wyborFunkcji == 2 || wyborFunkcji == 3)) {
+    if (!(wyborFunkcji == 1 || wyborFunkcji == 2 || wyborFunkcji == 3 || wyborFunkcji == 4 || wyborFunkcji == 5)) {
         cout << "Podaj prawidlowy numer funkcji.\n";
         return 0;
     }
@@ -47,6 +53,26 @@ int main() {
     bool flagType = 0;
 
     if (wyborFunkcji == 1) {
+        if (wielomian(a) * wielomian(b) >= 0) {
+            cout << "Przedzial nie spelnia warunku f(a)*f(b)<0.";
+            return 0;
+        }
+        if (wyborWariantu == 1) {
+            cout << "Podaj epsilon: " << endl;
+            cin >> e;
+            flagType = 1;
+            wynikb = bisekcja(a, b, e, wielomian, flagType);
+            wyniks = sieczne(a, b, e, wielomian, flagType);
+        } else {
+            cout << "Podaj ilosc iteracji: " << endl;
+            cin >> iter;
+            wynikb = bisekcja(a, b ,iter, wielomian, flagType);
+            wyniks = sieczne(a, b ,iter, wielomian, flagType);
+        }
+        cout << "Znalezione miejsce zerowe za pomoca metody bisekcji: " << wynikb << endl;
+        cout << "Znalezione miejsce zerowe za pomoca metody siecznych: " << wyniks << endl;
+        tworzenieWykresu(a, b, wielomian, wynikb, wyniks);
+    } else if (wyborFunkcji == 2) {
         if (trygonometryczna(a) * trygonometryczna(b) >= 0) {
             cout << "Przedzial nie spelnia warunku f(a)*f(b)<0.";
             return 0;
@@ -60,13 +86,13 @@ int main() {
         } else {
             cout << "Podaj ilosc iteracji: " << endl;
             cin >> iter;
-            wynikb = bisekcja(a, b ,iter, trygonometryczna, flagType);
-            wyniks = sieczne(a, b ,iter, trygonometryczna, flagType);
+            wynikb = bisekcja(a, b, iter, trygonometryczna, flagType);
+            wyniks = sieczne(a, b, iter, trygonometryczna, flagType);
         }
         cout << "Znalezione miejsce zerowe za pomoca metody bisekcji: " << wynikb << endl;
         cout << "Znalezione miejsce zerowe za pomoca metody siecznych: " << wyniks << endl;
-//          tworzenieWykresu(a, b, trygonometryczna, wynikb, wyniks);
-    } else if (wyborFunkcji == 2) {
+        tworzenieWykresu(a, b, wykladnicza, wynikb, wyniks);
+    } else if (wyborFunkcji == 3) {
         if (wykladnicza(a) * wykladnicza(b) >= 0) {
             cout << "Przedzial nie spelnia warunku f(a)*f(b)<0.";
             return 0;
@@ -85,8 +111,8 @@ int main() {
         }
         cout << "Znalezione miejsce zerowe za pomoca metody bisekcji: " << wynikb << endl;
         cout << "Znalezione miejsce zerowe za pomoca metody siecznych: " << wyniks << endl;
-//          tworzenieWykresu(a, b, wykladnicza, wynikb, wyniks);
-    } else {
+        tworzenieWykresu(a, b, wykladnicza, wynikb, wyniks);
+    } else if (wyborFunkcji == 4) {
         if (zlozenie(a) * zlozenie(b) >= 0) {
             cout << "Przedzial nie spelnia warunku f(a)*f(b)<0.";
             return 0;
@@ -95,8 +121,8 @@ int main() {
             cout << "Podaj epsilon: " << endl;
             cin >> e;
             flagType = 1;
-            wynikb = bisekcja(a, b, e, wykladnicza, flagType);
-            wyniks = sieczne(a, b, e, wykladnicza, flagType);
+            wynikb = bisekcja(a, b, e, zlozenie, flagType);
+            wyniks = sieczne(a, b, e, zlozenie, flagType);
         } else {
             cout << "Podaj ilosc iteracji: " << endl;
             cin >> iter;
@@ -106,6 +132,26 @@ int main() {
         cout << "Znalezione miejsce zerowe za pomoca metody bisekcji: " << wynikb << endl;
         cout << "Znalezione miejsce zerowe za pomoca metody siecznych: " << wyniks << endl;
         tworzenieWykresu(a, b, zlozenie, wynikb, wyniks);
+    } else {
+        if (zlozenie2(a) * zlozenie2(b) >= 0) {
+            cout << "Przedzial nie spelnia warunku f(a)*f(b)<0.";
+            return 0;
+        }
+        if (wyborWariantu == 1) {
+            cout << "Podaj epsilon: " << endl;
+            cin >> e;
+            flagType = 1;
+            wynikb = bisekcja(a, b, e, zlozenie2, flagType);
+            wyniks = sieczne(a, b, e, zlozenie2, flagType);
+        } else {
+            cout << "Podaj ilosc iteracji: " << endl;
+            cin >> iter;
+            wynikb = bisekcja(a, b, iter, zlozenie2, flagType);
+            wyniks = sieczne(a, b, iter, zlozenie2, flagType);
+        }
+        cout << "Znalezione miejsce zerowe za pomoca metody bisekcji: " << wynikb << endl;
+        cout << "Znalezione miejsce zerowe za pomoca metody siecznych: " << wyniks << endl;
+        tworzenieWykresu(a, b, zlozenie2, wynikb, wyniks);
     }
 
      // Dotyczy obliczania wartosci wielomianu na podstawie schematu hornera
@@ -129,7 +175,7 @@ void tworzenieWykresu(double a, double b, double fun(double), double wynikb, dou
     vector <double> y(300);
     Gnuplot wykres;
 
-    wykres.set_title("Wykres funkcji" );
+    wykres.set_title("Wykres funkcji");
     wykres.set_grid();
     wykres.set_xlabel("OX");
     wykres.set_ylabel("OY");
@@ -143,7 +189,8 @@ void tworzenieWykresu(double a, double b, double fun(double), double wynikb, dou
         a += 0.01;
     }
 
-    wykres.plot_xy(x, y, "Wykres" );
+    wykres.plot_xy(x, y, "Wykres");
     getchar();
     getchar();
 }
+
